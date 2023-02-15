@@ -1,0 +1,109 @@
+* {
+  box-sizing: border-box;
+  /* everything is calculated inside, to avoid creating divs of different size and we keep same width on all divs, flex works without box-sizing */
+}
+
+body {
+  margin: 0;
+  /* Good habit to have a set layout without worrying about margins or borders */
+  font-family: Helvetica;
+  display: grid;
+  height: 100vh;
+  
+}
+/* We chose the selection bc it is the parent (always choose the parent) of h2 (our child) aka flex item */
+/* section {
+    display: flex;
+ } */
+
+nav {
+  /* display: flex; */
+  /* The divs are all flex items, full control over them */
+
+  /* flex-direction: row; row is the default setting, left to right */
+  justify-content: flex-start; /* positioning the children */
+  /* always going to be from the main axis (left to right on a row)  */
+  align-items: center;
+  /* controls main cross axis  */
+
+  height: 50px;
+  /* now the containers have 50px height, can see when insepct web page */
+
+  background-color: #a2cbb6;
+  /* width: 100px; */
+}
+
+div {
+  /* direct divs of the nav bar , div > nav*/
+  /* affecting only the div containers within nav bar */
+  margin: 10px;
+  font-size: 20px;
+  color: #f3dba8;
+}
+
+nav > div:last-child {
+  /* 	Selects all <nav> elements where the parent is a <div> element, this is a css selector (eg: class, id) */
+  margin-left: auto;
+  /* auto pushes the div to the right and says push it with as much space that is available */
+}
+/* 
+.one {
+    background-color: rgb(241, 56, 111);
+    flex: 50%;
+}
+
+.two {
+    background-color: rgb(114, 239, 95);
+}
+
+.three {
+    background-color: rgb(31, 203, 203);
+}
+
+.four {
+    background-color: rgb(184, 181, 9);
+}
+
+.five {
+    background-color: rgb(239, 133, 2);
+}
+.six {
+    background-color: rgb(13, 82, 125);
+}
+.seven {
+    background-color: rgb(167, 38, 9);
+    flex:3;
+}
+.eight {
+    background-color: rgb(187, 112, 240);
+}
+.nine {
+    background-color: rgb(30, 6, 84);
+    flex: 1;
+    order: 99;
+    
+}
+.ten {
+    background-color: rgb(30, 171, 107);
+    flex: 1;
+    order: 1;
+} */
+
+/* section > div {
+    width: 50px;
+    padding: 5px;
+    text-align: center;
+    font-size: 20px;
+} */
+
+/* section {
+    display: flex; */
+    /* So what does flex do? Everything inside the tag will be spread evenly across the page from left to right. Its just a way to make sure that regardless of screensize, everything fits */
+    /* height: 50px;
+    background-color: rgb(183, 183, 241);
+    flex-direction: row;
+    /* justify-content: space-between; */
+    /* flex-wrap: wrap;
+    align-items: center;
+    gap: 10%; */
+} */

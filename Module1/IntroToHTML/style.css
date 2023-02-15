@@ -1,0 +1,62 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
+
+body {
+    /* background-image: url(https://images.unsplash.com/photo-1661961110372-8a7682543120?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80); */
+    background-color: rgb(209, 249, 202);
+    background-color: #00425A;
+       /* css is falling from top to bottom, if there is same attribut twice it will show the last one of the two on the webpage */
+    color: #BFDB38;
+    font-family: system-ui;
+ 
+}
+nav {
+    font-family: monospace;
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+    background-color: rgb(5, 84, 144);
+    border: 2px solid #d28f2c;
+}
+
+h1 {
+    color: #FC7300;
+    font-family: 'Aboreto', cursive;
+}
+.sections{
+    background-color: rgb(214, 154, 25);
+    padding: 20px;
+    border-radius: 20px;
+    /* border-radius rounds out the edges */
+    border: 5px dotted;
+    margin: 20px;
+    
+    /* z-index: 1; */
+    /* position: relative; */
+    /* The position: static property prevents z-index from having an effect.
+Try setting position to something other than static. */
+    /* border-top-width: 10px;
+    border-right-width: 10px;
+    border-bottom-width: 10px;
+    border-left-width: 10px;  */
+}
+
+/* specificity: is an algorithm used by browsers that calculates the weights that is applied to a given CSS declaration, if it has higher specificity it overrides classes or id's or tag, in our example it selected the id bc its most specific, inline style has highest specificity <h1 style='color: red'></h1>  */
+
+p{
+    color: #11fc00;
+    font-family: monospace;
+}
+
+#first-par{
+    color:rgb(209, 249, 202);
+    font-weight: bold;
+}
+
+#foot{
+    color: #FC7300;
+    font-family: 'Aboreto', cursive;
+}
+/* make sure to keep everything organized within brackets */
+/* id should only be used one */
+/* class can be copied multiple times to target areas */

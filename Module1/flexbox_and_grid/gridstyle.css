@@ -1,0 +1,49 @@
+body {
+    display:grid;
+    grid-template-columns: 1fr 4fr;
+    /* 2 columns using fraction unit */
+    grid-template-rows: 50px 1fr 30px;
+    height: 100vh;
+    margin: 0;
+    font-family: Helvetica;
+    gap: 10px 1px;
+    /* no such thing as grid gap anymore just gap */
+    /* first value affects the rows and the second is for the columns */
+
+    
+}
+nav {
+    color: blue;
+}
+nav, footer {
+    display: flex;
+    flex-direction: row;
+    align-items:flex-start;
+    background-color: rgb(181, 249, 216);
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    grid-column: 1/3;
+    /* space available from grid line 1 to the third line */
+    /* grid-column: span 2; */
+    /* by grid lines either or is okay, depends on preference  */
+}
+/* fr : fraction */
+/* Using grid to create big layout of website, the smaller components we use flexbox to move things around int he smaller container */
+aside {
+    background-color: #a2b4da;
+    grid-column: 1/2;
+  }
+  
+  main {
+    background-color: #f3dba8;
+  }
+  
+  footer {
+    background-color: #a2cbb6;
+  }
+
+  .flex-ctr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

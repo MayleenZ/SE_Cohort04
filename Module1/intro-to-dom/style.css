@@ -1,0 +1,20 @@
+h2 {
+    background-color: blue;
+}
+
+div {
+    background-color: purple;
+    padding: 10px;
+    color: white;
+}
+
+.selected {
+    background-color: green; 
+    font-family: Arial, Helvetica, sans-serif;
+}
+/* we are attaching this class when use selects a certain thing in browser, now this would be using the DOM */
+
+.removed {
+    background-color: red;
+    font-family: monospace;
+}

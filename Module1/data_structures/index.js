@@ -88,8 +88,9 @@ console.log(div);
 //Test
 const p = document.createElement("p");
 p.textContent = "Hello Worldy"
+console.dir(p);
+//console.dir will give you all the properties and elements of the variable we made : p
 console.log(p);
-
 
 //Creating an element tag to pass text through , created our own element node 
 

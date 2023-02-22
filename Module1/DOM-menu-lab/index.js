@@ -1,9 +1,20 @@
 
 var menuLinks = [
-    {text: 'about', href: '/about'}, //0
-    {text: 'catalog', href: '/catalog'}, //1
-    {text: 'orders', href: '/orders'}, //2
-    {text: 'account', href: '/account'}, //3
+    {text: 'about', href: '/about'},
+    {text: 'catalog', href: '#', subLinks: [
+      {text: 'all', href: '/catalog/all'},
+      {text: 'top selling', href: '/catalog/top'},
+      {text: 'search', href: '/catalog/search'},
+    ]},
+    {text: 'orders', href: '#' , subLinks: [
+      {text: 'new', href: '/orders/new'},
+      {text: 'pending', href: '/orders/pending'},
+      {text: 'history', href: '/orders/history'},
+    ]},
+    {text: 'account', href: '#', subLinks: [
+      {text: 'profile', href: '/account/profile'},
+      {text: 'sign out', href: '/account/signout'},
+    ]},
   ];
 //This is an array filled with four objects 
 //to access these you use dot notation and bracket notation
@@ -58,8 +69,6 @@ topMenuEl.classList.add('flex-around')
 //     topMenuEl.append(a)
 // })
 
-
-
 //* Using a for of Loops
 for (element of menuLinks) {
     //element is each line in the array 
@@ -75,6 +84,51 @@ for (element of menuLinks) {
     topMenuEl.append(a)
     //now we are going to append a variable to topmenuEl
 }
+
+////////////* Part Two */////////////
+
+
+//* Task 4.0 
+
+const subMenuEl = document.querySelector("#sub-menu")
+console.log(subMenuEl);
+
+//* Task 4.1
+subMenuEl.style.height = '100%'
+
+//* Task 4.2
+subMenuEl.style.backgroundColor = "var(--sub-menu-bg)"
+
+//* Task 4.3
+subMenuEl.classList.add('flex-around')
+
+//* Task 4.4
+subMenuEl.setAttribute("position", "absolute")
+
+//* Task 4.5
+subMenuEl.setAttribute("top", 0)
+
+//* Task 5.1
+console.log(topMenuEl)
+
+const topMenuLinks = topMenuEl.querySelectorAll('a')
+console.log(topMenuLinks);
+
+const showingSubMenu = false;
+
+//* Task 5.2
+
+//using the a tags with content
+topMenuEl.addEventListener("click", function(e){
+    e.preventDefault()
+    // console.log(e.target.tagName.toLowerCase())
+    if(e.target.tagName.toLowerCase() !== 'a'){
+        console.log(e.target.tagName.toLowerCase());
+        return
+    }
+    //prevents the link from opening the url
+});
+
 
 
 

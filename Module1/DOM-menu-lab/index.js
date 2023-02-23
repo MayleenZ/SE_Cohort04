@@ -121,12 +121,11 @@ const showingSubMenu = false;
 //using the a tags with content
 topMenuEl.addEventListener("click", function(e){
     e.preventDefault()
-    // console.log(e.target.tagName.toLowerCase())
     if(e.target.tagName.toLowerCase() !== 'a'){
         console.log(e.target.tagName.toLowerCase());
-        return
+        return 
     }
-    //prevents the link from opening the url
+    console.log(e.target.innerHTML)
 });
 
 

@@ -111,24 +111,85 @@ subMenuEl.setAttribute("top", 0)
 //* Task 5.1
 console.log(topMenuEl)
 
-const topMenuLinks = topMenuEl.querySelectorAll('a')
+let topMenuLinks = topMenuEl.querySelectorAll('a')
 console.log(topMenuLinks);
 
-const showingSubMenu = false;
+let showingSubMenu = false;
 
 //* Task 5.2
+//*Task 5.3
 
 //using the a tags with content
 topMenuEl.addEventListener("click", function(e){
     e.preventDefault()
+    console.log(e.target.classList);
+    console.log(e.target.classList.contains("active"));
+    //handles e first 
     if(e.target.tagName.toLowerCase() !== 'a'){
+      //we didnt click on an anchor
         console.log(e.target.tagName.toLowerCase());
+        //no change to state
         return 
-    }
+    } else if(e.target.classList.contains("active")){
+      //an active anchor was clicked
+      e.target.classList.remove("active")
+      showingSubMenu = false;
+      subMenuEl.setAttribute("top", 0)
+      //removes active class for e, turns white
+      return
+    } else if (showingSubMenu === true){
+          buildSubMenu()
+        } 
+    //we clicked on an inactive anchor
     console.log(e.target.innerHTML)
+    // console.log(e.target);
+    //------------------------------
+    for (link of topMenuLinks){
+      link.classList.remove("active")
+    }
+    //every link in topmenulinks was made inactive
+
+    //-------------------------------------
+    e.target.classList.add('active')
+    //made one anchor we clicked on active
 });
 
+console.log(menuLinks);
+console.log(menuLinks[2]);
+console.log(menuLinks[2].subLinks);
+//all have sublinks except ABOUT
+console.log(menuLinks[1].href);
 
 
+console.log('subLinks' in menuLinks[2]);
+//true
+
+// const topMenuEl = document.querySelector('#top-menu')
+// console.log(topMenuEl);
 
 
+function menuLinksfunc() {
+for (let i = 0; i < menuLinks.length; i++){
+  console.log(menuLinks[i]);
+  if ('subLinks' in menuLinks[i]){
+    showingSubMenu = true;
+  } else {
+    showingSubMenu = false;
+  }
+}
+}
+
+  function buildSubMenu(subLinks) {
+    subMenuEl.innerHTML = "";
+    const subMenuLinks = subLinks.map((link) => {
+      const subMenuLink = document.createElement("a");
+      subMenuLink.setAttribute("href", link.href);
+      subMenuLink.textContent = link.text;
+      return subMenuLink;
+    });
+    subMenuEl.append(...subMenuLinks);
+    subMenuEl.style.top = "100%"
+  }
+
+
+// Did anyone code Task 6.4 of the DomMenuLab homework inside the subMenuEl.addEventListener as I think is intended? To get the Task 6.4 result, I ended up putting code in the topMenuEl.addEventListener instead. (Basically like going back and adding additional code to Task 5.2.  )

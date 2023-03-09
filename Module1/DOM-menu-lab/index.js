@@ -256,16 +256,16 @@ console.log(subMenuEl);
 
 // updateMainEl(subL4)
 
-//   const textBodies = document.createElement("h1")
-//   textBodies.setAttribute("h1", subL2[0].text)
-//   console.log(textBodies);
+  const textBodies = document.createElement("h1")
+  textBodies.setAttribute("h1", subL2[0].text)
+  console.log(textBodies);
 
 
-// console.log(subL2[0].text);
+console.log(subL2[0].text);
 
-// for (let i = 0; i < menuLinks.length; i++){
-//   console.log(menuLinks[i].text);
-// }
-// for (let i = 0; i < mySubs.length; i++){
-//   console.log(mySubs[i]);
-// }
+for (let i = 0; i < menuLinks.length; i++){
+  console.log(menuLinks[i].text);
+}
+for (let i = 0; i < mySubs.length; i++){
+  console.log(mySubs[i]);
+}

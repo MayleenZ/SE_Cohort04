@@ -25,6 +25,7 @@ function TodoList(props) {
                 return (
                   <Todo
                     key={todo.id}
+                    // we set the key so react can identify each item on the list
                     todo={todo}
                     completeTodo={completeTodo}
                     editTodoText={editTodoText}

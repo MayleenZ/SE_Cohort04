@@ -10,7 +10,6 @@ function Todo(props) {
     // the state is encapsulated inside each component, in this case each todo has their own state 
 
     return (
-        <>
         <li>
             <div>
             <h2 onClick={()=> setShowInput(!showInput)}>{todo.text}</h2>
@@ -30,14 +29,15 @@ function Todo(props) {
             </div>
 
             <label>
-                Complete {''}
+                Complete {' '}
                 <input 
                 onChange={(e) => completeTodo(todo.id, e)} type = "checkbox" checked = {todo.completed}/>
                 {/* property of checked for completed tasks, the checked will be automatically checked if it is completed (true)  */}
+                {/* if this event happens, it will be checked and will be changed to completed which is truthy value.  */}
             </label>
             <button onClick = {(e) => deleteTodo(todo.id)}>DELETE</button>
+            {/* execute the function of delete, will find the index and splice the todo with the index and remove just 1  */}
         </li>
-        </>
     )
 }
 

@@ -7,19 +7,19 @@ function Index({ fruits }) {
   return (
     <div>
       <h1>Index Route</h1>
+      <nav>
+        <a href="/fruits/new">Create a New Fruit</a>
+      </nav>
       <ul>
         {fruits.map((fruit, i) => {
           return (
             <div>
-              <li>
-                The <a href={`/fruits/${i}`}>{fruit.name}</a>
+              <li key={fruit._id}>
+                The <a href={`/fruits/${fruit._id}`}>
+                  {fruit.name}</a>
               </li>
-              <li>
-                Color is {fruit.color}
-              </li>
-              <li>
-                The fruit is {fruit.readyToEat ? 'yum' : 'not yum'}
-              </li>
+              <li>Color is {fruit.color}</li>
+              <li>The fruit is {fruit.readyToEat ? "yum" : "not yum"}</li>
               <hr />
             </div>
           );
@@ -28,5 +28,6 @@ function Index({ fruits }) {
     </div>
   );
 }
+// using fruit._id to match the mongoDB id so it catches it and reads it 
 
 module.exports = Index;

@@ -1,0 +1,4 @@
+.env 
+# we are hiding the .env file from git
+/node_modules 
+# we dont want this folder to be sent to git either 

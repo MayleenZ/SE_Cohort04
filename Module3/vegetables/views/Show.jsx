@@ -8,7 +8,7 @@ function Show (props){
             <h1>Show Route</h1>
             <p>
                 {veggie.name} is {veggie.color}
-                {veggie.triedBefore ? "awesome" : "you should try it"}
+                {veggie.readyToEat ? " and it is ready to eat" : " but let's wait till ripe"}
             </p>
         </div>
     )

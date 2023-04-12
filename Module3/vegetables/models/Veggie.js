@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 const VeggieSchema = new mongoose.Schema({
     name: {type: String, required: true},
     color: {type: String, required: true},
-    triedBefore: Boolean
+    readyToEat: Boolean
 })
 
 //* Mongoose Model 

@@ -6,13 +6,15 @@ function Index ({veggies}){
 return (
     <div>
         <h1>Index Route</h1>
+        <a href = "./veggies/new">Click to create new vegetable</a>
         <ul>
-        {veggies.map((veggie, i) => {
+        {veggies.map((veggie, key) => {
             return (
                 <div>
                     <li key = {veggie._id}>The <a href = {`/veggies/${veggie._id}`}>{veggie.name}</a></li>
-                    <li>{veggie.color}</li>
-                    <li>{veggie.triedBefore ? "tried" : "not tried"}</li>
+                    <li>Color: {veggie.color}</li>
+                    <li>Ready to Eat? {veggie.readyToEat ? "Yes" : "Not ripe yet"}</li>
+                    < hr/>
                 </div>
             )
         })}

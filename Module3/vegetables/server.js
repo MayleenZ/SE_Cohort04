@@ -21,6 +21,8 @@ app.get("/", (req, res) => {
   res.send("<h1>Hello Veggies</h1>");
 });
 
+//? The reason app.get is before the app.post in this scenario is because we first want our user to see all the vegetables and then to create and "post" a new one to all the vegetables, after posting they will get redirected back to /veggies where they will see all the vegetables and their post.
+//? Its important that the order of the code follows the flow of the user and functionality of site
 app.get("/veggies", (req, res) => {
   Veggie.find({}, (error, allVeggies) => {
     res.render("Index", { veggies: allVeggies });

@@ -3,6 +3,8 @@ const express = require('express')
 const PORT = 3000
 const app = express()
 const jsx = require('jsx-view-engine')
+const Home = require("./view/Home")
+const Register = require("./views/Register")
 
 //View Engine
 app.set('view engine', 'jsx')
@@ -18,6 +20,6 @@ app.get('/', (req,res)=> {
 
 
 //Listening Port
-app.listen(3000, function(){
+app.listen(PORT, function(){
     console.log(`server port ${PORT} is running`);
 })

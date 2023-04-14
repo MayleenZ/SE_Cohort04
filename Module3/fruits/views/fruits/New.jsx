@@ -1,12 +1,13 @@
 const React = require("react");
+const DefaultLayout = require('../layout/Default')
 
 function New() {
   return (
-    <div>
+    <DefaultLayout title = "New Fruit Page">
       <nav>
         <a href="/fruits/">Index Page</a>
       </nav>
-      <h1>New Fruit Page</h1>
+      {/* <h1>New Fruit Page</h1> */}
       {/* when form gets submitted, it will make the action to post/using the POST method to send the data to the endpoint  /fruits */}
       {/* It sending it to be added to our index route */}
       <form action="/fruits" method="POST">
@@ -18,7 +19,7 @@ function New() {
         <br />
         <input type="submit" name="" value="Create new fruit" />
       </form>
-    </div>
+    </DefaultLayout>
   );
 }
 

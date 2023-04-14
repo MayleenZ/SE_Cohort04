@@ -4,6 +4,7 @@ const fruits = require("./models/fruits");
 const express = require("express");
 //get cached into the memory of the application
 const mongoose = require("mongoose");
+const methodOverride = require("method-override");
 
 //? our new model from mongoose
 const Fruit = require("./models/Fruit");
@@ -37,6 +38,10 @@ app.use((req, res, next) => {
 app.use(express.urlencoded({ extended: false }));
 //built in middleware funciton by express, parses incoming request bodies in URL encoded format
 
+//* Method Override so we can connect the form / input / delete button query to delete
+//==  Override using a query value ; so that when i make the request from the form we are going to make a POST and then the action we will specific the route and the query with the method we want to execute
+app.use(methodOverride("_method"));
+
 //* =========== * ENDPOINTS /ROUTES
 
 app.get("/", (req, res) => {
@@ -48,19 +53,65 @@ app.get("/fruits", (req, res) => {
   //sending raw array with objects inside
   //   res.send(fruits);
   // res.render("fruits/Index", { fruits: fruits });
-  Fruit.find({}, (error, allFruits)=> {
-    //find all the documents in mongoose from Fruit mongoose model and putting it in allFruits 
-    res.render('./fruits/Index', {fruits: allFruits})
+  Fruit.find({}, (error, allFruits) => {
+    //find all the documents in mongoose from Fruit mongoose model and putting it in allFruits
+    res.render("./fruits/Index", { fruits: allFruits });
     //passing in the prop name fruits and reading from allFruits we got back from database instead of just our local data from models
-    //we asked for all the documents 
-    
-  })
+    //we asked for all the documents
+  });
 });
 
 //? New Route: (return a form to create a new fruit)
 //why we put this above our show route is because our show route has a parameter and it will never reach the new page as it will think it is a parameter.
 app.get("/fruits/new", (req, res) => {
   res.render("fruits/New");
+});
+
+//* Return the edit form
+app.get("/fruits/:id/edit", (req, res) => {
+  Fruit.findById(req.params.id, (error, foundFruit) => {
+    !error
+      ? res.render("fruits/Edit", { fruit: foundFruit })
+      : res.send({ msg: error.message });
+  });
+});
+
+//* Seed Route
+app.get('/fruits/seed', (req,res) => {
+  Fruit.create([
+    {
+        name:'grapefruit',
+        color:'pink',
+        readyToEat:true
+    },
+    {
+        name:'grape',
+        color:'purple',
+        readyToEat:false
+    },
+    {
+        name:'avocado',
+        color:'green',
+        readyToEat:true
+    }
+], (err, data)=>{
+    res.redirect('/fruits');
+})
+})
+
+
+
+//* Handle the edit form data
+app.put("/fruits/:id", (req, res) => {
+  req.body.readyToEat = req.body.readyToEat === "on" ? true : false;
+  Fruit.findByIdAndUpdate(
+    req.params.id,
+    req.body,
+    { new: true },
+    (error, updatedFruit) => {
+      res.redirect(`/fruits/${req.params.id}`);
+    }
+  );
 });
 
 //? POST method (accept data from the form), we created a new endpoint so our app can communicate with a new route
@@ -84,7 +135,7 @@ app.post("/fruits", (req, res) => {
   Fruit.create(req.body, (err, createdFruit) => {
     // res.send(createdFruit);
     // redirects the user to another page/endpoint in the app, in this case to the fruits index route/page/endpoint.
-    res.redirect('/fruits')
+    res.redirect("/fruits");
   });
 });
 
@@ -96,11 +147,20 @@ app.get("/fruits/:id", (req, res) => {
   //   res.send(fruits[req.params.indexOfFruit]);
   // res.render("fruits/Show", { fruit: fruits[req.params.indexOfFruit] });
   //we are rendering the template Show.jsx
-  Fruit.findById(req.params.id, (error, foundFruit)=> {
-    res.render('fruits/Show', {fruit : foundFruit})
-  })
+  Fruit.findById(req.params.id, (error, foundFruit) => {
+    res.render("fruits/Show", { fruit: foundFruit });
+  });
 });
 
+
+//! DELETE FRUIT
+app.delete("/fruits/:id", (req, res) => {
+  Fruit.findByIdAndRemove(req.params.id, (error, deletedFruit) => {
+    // res.send(deletedFruit)
+    //here we are sending the data(deletedFruit) we have selected by the req.params.id and deleting it
+    res.redirect("/fruits");
+  });
+});
 
 //**** Super Cool way to redirect user if they misspell the url , bc it will all get redirected, checks any of the routes and if the routes doesnt match until it reaches the end and redirects the user to /fruits */
 //* Usually shows the user the 404 page and can create a new view and call it 404.jsx and create a new view and use res.render
@@ -109,7 +169,6 @@ app.get("/*", (req, res) => {
   res.render("404");
   // res.redirect('/fruits')
 });
-
 //* PORT LISTENING
 
 app.listen(port, () => {
